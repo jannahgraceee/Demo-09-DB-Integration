@@ -1,0 +1,154 @@
+openapi: 3.0.1
+info:
+  title: PRIN135-Demo-10-OpenAPI
+  version: 'Version: 1.0'
+  contact:
+    email: claravall2130888@mls.ceu.edu.ph
+    name: Jannah Claravall
+externalDocs:
+  url: swagger.json
+  description: swagger.json
+servers:
+  - url: https://demo-09-db-integration-wine.vercel.app
+    variables: {}
+    description: Production
+paths:
+  /tasks:
+    get:
+      summary: Returns all tasks.
+      description: Returns all tasks.
+      operationId: ''
+      responses:
+        '200':
+          description: Task Found
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TaskGetResponse'
+        '404':
+          description: Task Not Found
+      tags:
+        - Tasks
+    post:
+      summary: Creates a task.
+      description: Creates a task.
+      operationId: ''
+      requestBody:
+        description: 'Post description'
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskCreateRequest'
+      responses:
+        '201':
+          description: Task Created
+      tags:
+        - Tasks
+  /tasks{id}:
+    get:
+      summary: Returns a task by specified id.
+      description: Returns a task by specified id.
+      parameters:
+        - name: id
+          description: 'The id of the task.'
+          in: path
+          required: true
+          schema:
+            type: integer
+      operationId: Leave empty
+      responses:
+        '200':
+          description: Task Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskGetResponse'
+        '404':
+          description: Task Not Found
+      tags:
+        - Tasks
+    put:
+      summary: Updates a task by specified id.
+      description: Updates a task by specified id.
+      parameters:
+        - name: id
+          description: 'The id of the task.'
+          in: path
+          required: true
+          schema:
+            type: integer
+      operationId: ''
+      requestBody:
+        description: 'Update description'
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskUpdateRequest'
+      responses:
+        '200':
+          description: Task Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskGetResponse'
+        '404':
+          description: Task Not Found
+      tags:
+        - Tasks
+    delete:
+      summary: Deletes a task by specified id.
+      description: Deletes a task by specified id.
+      parameters:
+        - name: id
+          description: 'The id of the task.'
+          in: path
+          required: true
+          schema:
+            type: integer
+      operationId: ''
+      responses:
+        '200':
+          description: Task Successfully Deleted
+        '400':
+          description: Task Not Found
+      tags:
+        - Tasks
+components:
+  schemas:
+    TaskCreateRequest:
+      type: object
+      properties:
+        name:
+          type: string
+    TaskUpdateRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        isDone:
+          type: boolean
+    TaskGetResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        isDone:
+          type: boolean
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
